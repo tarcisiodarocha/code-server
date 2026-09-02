@@ -111,10 +111,18 @@ cert: false
 
 ```
 
-
 *(Anote a senha gerada ou altere-a para uma de sua preferência).*
+
 3. **Salvar e fechar:** Pressione `Ctrl + O`, `Enter` para salvar, e `Ctrl + X` para sair.
-4. **Reiniciar o serviço:**
+
+4. **Redirecionar a porta 80:**
+```bash
+sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 8080
+
+```
+
+
+5. **Reiniciar o serviço:**
 ```bash
 sudo systemctl restart code-server@$USER
 
@@ -129,9 +137,9 @@ sudo systemctl restart code-server@$USER
 1. Acesse o painel da **AWS EC2** e clique na sua instância.
 2. Na aba inferior, clique em **Security** e depois no **Security Group** associado.
 3. Clique em **Edit inbound rules** (Editar regras de entrada).
-4. Adicione uma regra:
+4. Adicione a uma regra:
 * **Type:** Custom TCP
-* **Port Range:** `8080`
+* **Port Range:** `80`
 * **Source:** `Anywhere-IPv4` (`0.0.0.0/0`)
 
 
@@ -143,7 +151,7 @@ sudo systemctl restart code-server@$USER
 
 1. No navegador, acesse:
 ```text
-http://<IP-PUBLICO-DA-AWS>:8080
+http://<IP-PUBLICO-DA-AWS>
 
 ```
 
