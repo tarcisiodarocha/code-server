@@ -102,7 +102,7 @@ nano ~/.config/code-server/config.yaml
 
 
 2. **Modificar o `bind-addr`:**
-Altere a linha de `127.0.0.1:8080` para **`0.0.0.0:8080`**. O arquivo deve ficar semelhante a isto:
+Altere a linha de `127.0.0.1:8080` para **`0.0.0.0:8080`** e o conteúdo de "SUA_SENHA_AQUI" para uma senha de sua preferência. O arquivo deve ficar semelhante a isto:
 ```yaml
 bind-addr: 0.0.0.0:8080
 auth: password
@@ -111,7 +111,6 @@ cert: false
 
 ```
 
-*(Anote a senha gerada ou altere-a para uma de sua preferência).*
 
 3. **Salvar e fechar:** Pressione `Ctrl + O`, `Enter` para salvar, e `Ctrl + X` para sair.
 
@@ -137,8 +136,8 @@ sudo systemctl restart code-server@$USER
 1. Acesse o painel da **AWS EC2** e clique na sua instância.
 2. Na aba inferior, clique em **Security** e depois no **Security Group** associado.
 3. Clique em **Edit inbound rules** (Editar regras de entrada).
-4. Adicione a uma regra:
-* **Type:** Custom TCP
+4. Caso a regra de de liberação da porta 80 (HTTP) não esteja listada, adicione a seguinte regra:
+* **Type:** HTTP
 * **Port Range:** `80`
 * **Source:** `Anywhere-IPv4` (`0.0.0.0/0`)
 
@@ -157,5 +156,5 @@ http://<IP-PUBLICO-DA-AWS>
 
 
 2. Digite a senha configurada no `config.yaml`.
-3. Vá em **File > Open Folder...** e selecione `/home/ubuntu/projetos-distributed`.
+3. Vá em **File > Open Folder...** e selecione `/home/ubuntu/workspace`.
 4. Para abrir o terminal integrado e rodar comandos como `mvn clean install` ou compilar seus códigos, use o atalho **`Ctrl + \`` (ou `Ctrl + Shift + ``)**.
