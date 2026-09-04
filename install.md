@@ -116,7 +116,10 @@ cert: false
 
 4. **Redirecionar a porta 80:**
 ```bash
+sudo apt install iptables-persistent
 sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 8080
+sudo netfilter-persistent save
+
 
 ```
 
